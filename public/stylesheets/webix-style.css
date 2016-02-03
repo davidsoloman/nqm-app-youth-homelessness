@@ -1,0 +1,220 @@
+@import url(info-style.css);
+
+html {
+    background: white;
+}
+
+.ocdp_floating_logo {
+    position: absolute;
+    bottom: 30px;
+    left: 4px;
+    z-index: 90;
+}
+
+.ocdp_floating_logo img {
+    height: 30px;
+}
+
+.ocdp_welcome_logo{
+    height: 30px;
+    vertical-align: -8px;
+}
+
+.key_image {
+    position: absolute;
+    bottom: 30px;
+    right: 4px;
+    z-index: 90;
+}
+
+.key_image img {
+    height: 30px;
+}
+
+.cp_floating_logo {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 90;
+}
+
+.cp_floating_logo img {
+    height: 60px;
+}
+
+.cp_floating_search {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 90;
+    height: 40px;
+    width: 100px;
+}
+
+.cp_floating_key {
+    position: absolute;
+    bottom: -2px;
+    right: 2px;
+    z-index: 90;
+}
+
+.cp_logo {
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.cp_logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.cp_logo a:visited {
+
+}
+
+.cp_small_logo img {
+    height: 100%;
+}
+
+.cp_header {
+    background-color: grey;
+}
+
+.cp_riskFactorForm .webix_form {
+    padding-left: 0px;
+}
+
+.cp_UnemploymentForm .webix_form {
+    padding-left: 0px;
+}
+
+.cp_hidden {
+    display: none;
+}
+
+.cp_welcomeHeader {
+    padding-bottom: 10px;
+    border-bottom: 30px solid black;
+}
+
+.cp_welcomePage {
+    width: 66%;
+    min-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cp_welcomeDiv {
+    text-align: center;
+}
+
+#welcomeHeader {
+    min-width: 310px;
+    text-align: center;
+}
+
+.cp_welcomeMap img {
+    max-width: 100%;
+    height: auto;
+}
+
+#welcomeButton{
+    width: 280px;
+}
+
+#testwt{
+    width: 30vw;
+}
+
+#welcomeOcdpText{
+     min-width: 360px;
+    text-align: center;
+    margin-top: 10px;
+ }
+
+.webix_accordionitem {
+    text-align: justify;
+}
+
+.webix_view.cp_riskFactorIntro p {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 6px;
+}
+
+.webix_layout_toolbar.webix_toolbar .webixtype_base {
+/*
+    border-color: black;
+    */
+}
+
+#keyContainer {
+     position: absolute;
+     bottom: 30px;
+     right: 10px;
+     z-index: 9000;
+     cursor: pointer;
+}
+
+#homelessnessKeyContainer {
+    height: 20px;
+}
+
+.nodataImg {
+    margin: 30px;
+    margin-left: 60px;
+    width: 80px;
+}
+
+.backToMapButton{
+    margin: 10px;
+    margin-left: 0;
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 4px;
+    background: #D04627;
+    color: white;
+    cursor: pointer;
+}
+
+.webix_view button{
+}
+
+
+.shareImg{
+    height: 30px;
+    padding: 2px;
+
+}
+
+.webix_item_tab {
+    background-color: white;
+    color: grey;
+    border: white
+}
+
+.webix_item_tab {
+    background-color: white;
+    color: lightgrey;
+    border: white;
+    border-radius: 0;
+}
+
+.webix_item_tab .webix_selected {
+    background-color: #D04627;
+}
+
+
+.sourceHr {
+    margin-top: 20px;
+}
+
+.emailText{
+    color: #D04627;
+    font-weight: bold;
+    margin: 10px 0 10px 0;
+    cursor: pointer;
+}

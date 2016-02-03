@@ -1,0 +1,176 @@
+doctype html
+html
+    head
+        link(rel="stylesheet", href="/webix/webix.css", type="text/css")
+        link(rel="stylesheet", href="/stylesheets/webix-style.css", type="text/css")
+        link(href='https://fonts.googleapis.com/css?family=Roboto:300,400,600', rel='stylesheet' type='text/css')
+        script(type="text/javascript", src="/webix/webix.js")
+        script(type="text/javascript", src="http://maps.google.com/maps/api/js?sensor=true")
+        script(src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js")
+        script(type="text/javascript", src="/javascripts/webix-googlemap.js")
+        script(src="http://d3js.org/d3.v3.min.js")
+        script(src="http://d3js.org/topojson.v1.min.js")
+        script.
+            var sQuarter = !{JSON.stringify(quarter)};
+            var oLaTopo = !{JSON.stringify(topoLa)};
+            var mapStyle = !{JSON.stringify(mapStyle)};
+            var oEntities = !{JSON.stringify(entities)};
+            var oNational = !{JSON.stringify(national)};
+        script(type="text/javascript", src="/javascripts/add_data.js")
+        script(type="text/javascript", src="/javascripts/search_address.js")
+        script(type="text/javascript", src="/javascripts/add_modal.js")
+        script(type="text/javascript", src="/javascripts/main_map.js")
+        script(type="text/javascript", src="/javascripts/webix-client.js")
+        script(type="text/javascript", src="/javascripts/webix-ui.js")
+        script(type="text/javascript").
+            var preLoadView = '#{ activeView ? activeView : "map" }';
+            var preLoadFeature = '#{ activeFeature ? activeFeature : "" }';
+
+        script.
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-64729003-2', 'auto');
+            ga('send', 'pageview');
+
+
+    body
+
+
+        // info text for the homelessness data
+        div.cp_hidden(id="homelessnessInfoText")
+            p 16-24 year olds accepted as eligible, unintentionally homeless and in priority need in England.
+            p This data will not include most single homeless people as they are not classed as in priority need.
+            p White means the data has not been reported.
+            p Grey means the local authority reported a count of fewer than five young homeless people in the last three months.
+            p The Department for Communities and Local Government has suppressed some data reported as fewer than 5 to prevent the value from being calculated. This data is recorded here as missing.
+            p All data and analysis was, to our knowledge, correct as of the 20th September. Government-issued data modified after the 24th September will be amended in due course.
+            p
+                a(target="_blank" href='https://www.gov.uk/government/statistical-data-sets/live-tables-on-homelessness#detailed-local-authority-level-responses') Source
+
+        //info text for the missing data.
+        div.cp_hidden(id="missingDataInfoText")
+            p How many months the local authority has not submitted data on statutory youth homelessness.
+            p This includes where the Department for Communities and Local Government has suppressed some data reported as fewer than 5 to prevent the value from being calculated.
+            p
+                a(target="_blank" href='https://www.gov.uk/government/statistical-data-sets/live-tables-on-homelessness#detailed-local-authority-level-responses') Source
+
+        //info text for the unemployment data.
+        div.cp_hidden(id="unemploymentInfoText")
+            p Count of young people aged 16 to 24 claiming Jobseeker's allowance.
+            p
+                a(target='_blank', href='https://www.nomisweb.co.uk/query/select/getdatasetbytheme.asp?opt=3&theme=&subgrp') Source
+
+        //info text for risk factors
+        div.cp_hidden(id="riskFactorInfoText")
+            p Select the factors related to youth homelessness that you want to map and see which areas are most affected.
+
+        div.cp_hidden(id="noFeatureData")
+            p Click on a region of the map to see details of the population.
+
+        div.cp_hidden(id="sourceView")
+            button.backToMapButton(type='button', onclick="centrePoint.accordionViewChanged()") back to map
+            h2 Economy
+            h3 Youth Unemployment
+            p Count of young people aged 16 to 24 claiming Jobseekers Allowance.
+            a(target='_blank', href='https://www.nomisweb.co.uk/query/select/getdatasetbytheme.asp?opt=3&theme=&subgrp') Source
+            br
+            hr.sourceHr
+            h2 Social care
+            h3 Children in care
+            p Rate of children 18 and under looked after by their local authority in year ending 31 March 2014.
+            p Non Metropolitan Districts record their County's value.
+            a(target='_blank',href='https://www.gov.uk/government/statistics/children-looked-after-in-england-including-adoption--2') Source
+            hr.sourceHr
+            h2 Enviroment
+            h3 Index of deprivation
+            p The concentration of deprivation relative to other local authorities.
+            p Calculated by comparing most deprived areas in each authority, according to their relative rankings on a number of different measures of deprivation.
+            a(target='_blank', href='https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/6884/1871689.xls') Source
+            hr.sourceHr
+            h2 Education
+            h3 2 or more A levels or equivalent
+            p Percentage of 19 year olds educated to level 3 in the local authority. Level 3 education equates to achievement of 2 or more A-levels or equivalent size vocational qualifications.
+            p Non Metropolitan Districts record their County's value.
+            a(target='_blank', href='https://www.gov.uk/government/statistics/level-2-and-3-attainment-by-young-people-aged-19-in-2014') Source
+            br
+            br
+            h3 Achievement gap
+            p The percentage of children eligible for free school meals (FSM) or with special educational needs (SEN) attaining level 3 compared to children not eligible for FSM or SEN attaining level 3.
+            p Non Metropolitan Districts record their County's value.
+            a(target='_blank', href='https://www.gov.uk/government/statistics/level-2-and-3-attainment-by-young-people-aged-19-in-2014') Source
+            br
+            br
+            h3 Apprenticeship starts
+            p All apprenticeship starts for ages up to 24 in the local authority.
+            a(target='_blank', href='https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/382956/apprenticeships-starts-by-geography-level-and-age.xls') Source
+            br
+            br
+            h3 Persistent truancy
+            p Percentage of persistent absentees in state funded secondary schools.
+            a(target='_blank', href='https://www.gov.uk/government/statistics/pupil-absence-in-schools-in-england-2013-to-2014') Source
+            hr.sourceHr
+            h2 Health
+            h3 Hospital Admissions (under 24s)
+            p The number of emergency admissions caused by unintentional and deliberate injuries in young people aged 0 to 24.
+            p Local authority (LA) rates are calculated as an average of all clinical commissioning groups (CCGs) that are wholly or partially inside the LA boundary with equal weight given to all CCGs.
+            a(target='_blank', href='http://fingertips.phe.org.uk/profile-group/mental-health/profile/cmhp/data') Source
+            br
+            br
+            h3 Mental health problems (all ages)
+            p The percentage of patients (of all ages) with schizophrenia, bipolar affective disorder and other psychoses as recorded on practice disease registers.
+            p Local authority (LA) rates are calculated as an average of all clinical commissioning groups (CCGs) that are wholly or partially inside the LA boundary with equal weight given to all CCGs.
+            a(target='_blank', href='http://fingertips.phe.org.uk/profile-group/mental-health/profile/cmhp/data') Source
+            hr.sourceHr
+            br
+            p The related factors are combined by taking the mean of each local authority's ranks for each selected factor and then normalizing to form a non-parametric index of the  related factors.
+            p This is approach was taken due to the non-normal distributions of some of the factors.
+            br
+            hr
+            br
+            button.backToMapButton(type='button', onclick="centrePoint.accordionViewChanged()") back to map
+
+        div.cp_hidden(id="legendKeyText")
+            h2 Map legend
+
+        div.cp_hidden(id="homelessnessKeyText")
+            h3 Official youth homelessness
+            p The local authorities were ranked according to their reported rate of official youth homelessness.
+            p The dark red category refers to the 20% of authorities with the highest levels of youth homelessness.
+            p The light pink category refers to the 20% of authorities with the lowest levels of youth homelessness.
+            p The colours in between refer to three intervening fifths of local authorities.
+            p Grey means the local authority reported a count of fewer than five young homeless people in the last three months.
+            p And white means no data available (this includes data suppressed by DCLG to prevent the value from being calculated.
+            button.backToMapButton(type='button', onclick="centrePoint.accordionViewChanged()") back to map
+
+        div.cp_hidden(id="missingKeyText")
+            h3 How much data is missing
+            p How many months of official youth homelessness data are missing.
+            p Dark red means the local authority has 12 months of missing data.
+            p White means the local authority's data is up to date.
+            p The colors in between from dark to light are 9, 6 and 3 months of missing data.
+            button.backToMapButton(type='button', onclick="centrePoint.accordionViewChanged()") back to map
+
+        div.cp_hidden(id="unemploymentKeyText")
+            h3 Youth Unemployment
+            p The local authorities are ranked according to the rate of young people claiming Jobseekers Allowance.
+            p The dark red category refers to the 20% of authorities with the highest claiment counts.
+            p The light pink category refers to the 20% of authorities with the lowest claiment counts.
+            p The colours in between refer to claiment counts in the three intervening fifths.
+            p And white means there was no data available.
+            button.backToMapButton(type='button', onclick="centrePoint.accordionViewChanged()") back to map
+
+        div.cp_hidden(id="riskFactorsKeyText")
+            h3 Related factors
+            p The local authorities are ranked for each of the related factor that has been selected.
+            p An average rank is then calculated for the selected factors.
+            p The worst 20% category refers to authorities that on average rank in the worst 20%.
+            p The best 20% category refers to authorities that on average rank in the best 20%.
+            p The colours in between refer to averages in the three intervening fifths.
+            p And white means there was no data available.
+            button.backToMapButton(type='button', onclick="centrePoint.accordionViewChanged()") back to map
+
+
+
