@@ -340,8 +340,8 @@ if (typeof window.centrePoint === "undefined") {
         // In touch mode, add the logo and search box as overlays on the map view
         // to optimise space.
         var ele = document.createElement("div");
-        ele.innerHTML = "<div class='cp_floating_logo'><a target='_blank' href='http://centrepoint.org.uk/'><img src='/images/logo.png' /></a></div>";
-        $$("homelessnessMap").$view.appendChild(ele.firstChild);
+        //ele.innerHTML = "<div class='cp_floating_logo'><a target='_blank' href='http://centrepoint.org.uk/'><img src='/images/logo.png' /></a></div>";
+        //$$("homelessnessMap").$view.appendChild(ele.firstChild);
 
         // Create a container for the search ui.
         ele = document.createElement("div");
