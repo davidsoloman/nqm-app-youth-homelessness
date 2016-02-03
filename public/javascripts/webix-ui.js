@@ -31,7 +31,7 @@ centrePoint.uiHeader = {
   height: 60,
   css: "cp_header",
   cols: [
-    { view: "label", css: "cp_logo", width: 300, template: "<a href='/'>nqminds - youth homelessness</a>"},
+    { view: "label", css: "cp_logo", width: 300, template: "<a href='/explore'>nqminds - youth homelessness</a>"},
     {},
     centrePoint.uiSearchForm
   ]
