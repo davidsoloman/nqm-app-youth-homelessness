@@ -78,6 +78,16 @@ html {
     height: 100%;
 }
 
+.cp_toolbar {
+    background-color: lightgrey;
+    padding-bottom: 2px;
+}
+
+.cp_feature_label {
+    font-weight: bold;
+    padding-left: 10px;
+}
+
 .cp_header {
     background-color: grey;
 }

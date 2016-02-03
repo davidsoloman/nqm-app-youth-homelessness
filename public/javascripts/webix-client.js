@@ -325,9 +325,7 @@ if (typeof window.centrePoint === "undefined") {
         title = "Related Factors";
         break;
     }
-    if(!$$("mapButton").isVisible()) {
-        title = "<span style='float:right;font-size: 1em;margin-right:20px'>" + title + "</span>";
-    } else {
+    if($$("mapButton").isVisible()) {
         title = "";
     }
     $$("featureLabel").define("label", title);

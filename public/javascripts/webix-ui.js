@@ -321,17 +321,19 @@ centrePoint.uiRiskFactorsSideBar = {
 
 centrePoint.buttonElementsNonTouch = [
     { view: "button", id: "mapButton",  type: "iconButton", icon: "chevron-left", label: "map", width: 75, on: { onItemClick: centrePoint.accordionViewChanged } },
+    { view: "label", css: "cp_feature_label", id: "featureLabel", label: "Official youth homelessness"},
+    {},
     { view: "button", id: "pdfButton",  type: "iconButton", icon: "file-pdf-o", label: "pdf", width: 75, on: { onItemClick: centrePoint.createPdf } },
     { view: "button", id: "shareButton", type: "iconButton", icon: "share-alt", label: "share", width: 76, popup: "sharePopup", on: { onItemClick: centrePoint.buildShareButtons}},
-    { view: "label", id: "featureLabel", label: "Official youth homelessness"},
     { view: "button", id: "resetButton", type: "iconButton", icon: "repeat", label: "reset map", width: 110, on: { onItemClick: resetMap } }
 ]
 
 centrePoint.buttonElementsTouch = [
     { view: "button", id: "mapButton",  type: "iconButton", icon: "chevron-left", label: "map", width: 75, on: { onItemClick: centrePoint.accordionViewChanged } },
+    { view: "label", css: "cp_feature_label", id: "featureLabel", label: "Official youth homelessness"},
+    {},
     { view: "button", id: "pdfButton",  type: "iconButton", icon: "file-pdf-o", label: "pdf", width: 75, on: { onItemClick: centrePoint.createPdf } },
     { view: "button", id: "shareButton", type: "iconButton", icon: "share-alt", label: "", width: 30, popup: "sharePopup", on: { onItemClick: centrePoint.buildShareButtons}},
-    { view: "label", id: "featureLabel", label: "Official youth homelessness"},
     { view: "button", id: "resetButton", type: "iconButton", icon: "repeat", label: "", width: 30, on: { onItemClick: resetMap } }
 ]
 
@@ -361,6 +363,7 @@ centrePoint.uiMainLayout = {
             {
               id: "mainHeader",
               type: "template",
+              css: "cp_toolbar",
               height: centrePoint.barHeight,
               cols: centrePoint.buttonElements
             },
