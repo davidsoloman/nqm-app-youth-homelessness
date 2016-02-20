@@ -529,7 +529,7 @@ module.exports = {
          oNational.risks_data = {};
 
          //get list of LA and create entity object
-         var LaListPath = ("./data/LA_list.csv");
+         var LaListPath = (__dirname + "/data/LA_list.csv");
          var lines = fs.readFileSync(LaListPath, 'utf8').split('\n');
          var lineCount = lines.length;
          for (index = 0; index < lineCount; index++) {
